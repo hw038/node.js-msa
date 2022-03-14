@@ -13,7 +13,7 @@ class distributor extends require('./server.js') {
     }
 
     // 노드 접속 이벤트 처리
-onCreate(socket) {
+    onCreate(socket) {
          console.log("onCreate", socket.remoteAddress, socket.remotePort);
         this.sendInfo(socket);
     }

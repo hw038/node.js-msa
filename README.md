@@ -1,6 +1,15 @@
-# 006947
-Node.js 마이크로서비스 코딩 공작소
+# Node.js 를 통한 MSA 애플리케이션 개발
 
-* <Node.js 마이크로서비스 코딩 공작소>의 예제 파일입니다. 
-* 장별로 구성되어 있습니다.
-* Node.js 8.9 LTS 버전과 MariaDB 10.2 버전을 사용합니다(테스트 완료).
+
+## 컨셉
+
+- 쇼핑몰
+
+
+## 기술 스택
+
+- Frontend
+- Backend
+- API Gateway
+- DB (Paas DB)
+- Session (Redis Pod)
