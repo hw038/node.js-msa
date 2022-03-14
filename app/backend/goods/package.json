@@ -1,0 +1,14 @@
+{
+  "name": "MSA",
+  "version": "1.0.0",
+  "description": "MSA",
+  "main": "microservice_goods.js",
+  "scripts": {
+    "start": "node microservice_goods.js"
+  },
+  "author": "msa",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.15.0"
+  }
+}

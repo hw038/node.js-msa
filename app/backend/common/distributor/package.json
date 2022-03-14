@@ -1,0 +1,14 @@
+{
+  "name": "MSA",
+  "version": "1.0.0",
+  "description": "MSA",
+  "main": "distributor.js",
+  "scripts": {
+    "start": "node distributor.js"
+  },
+  "author": "msa",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.15.0"
+  }
+}

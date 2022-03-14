@@ -3,7 +3,7 @@
 const http = require('http');
 const url = require('url');
 const querystring = require('querystring');
-const tcpClient = require('../base/client');
+const tcpClient = require('./client');
 
 var mapClients = {};
 var mapUrls = {};
@@ -53,7 +53,7 @@ var packet = {
     var isConnectedDistributor = false;
 
     this.clientDistributor = new tcpClient(
-        "127.0.0.1"
+        "localhost"
         , 9000
         , (options) => {                                    // 접속 이벤트
             isConnectedDistributor = true;

@@ -7,7 +7,7 @@
 var map = {};
 
 // Server 클래스 상속
-class distributor extends require('../base/server.js') {
+class distributor extends require('./server.js') {
     constructor() {
         super("distributor", 9000, ["POST/distributes", "GET/distributes"]);
     }

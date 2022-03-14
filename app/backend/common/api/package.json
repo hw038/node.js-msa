@@ -1,0 +1,14 @@
+{
+  "name": "MSA",
+  "version": "1.0.0",
+  "description": "MSA",
+  "main": "gate.js",
+  "scripts": {
+    "start": "node gate.js"
+  },
+  "author": "msa",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.15.0"
+  }
+}

@@ -5,7 +5,7 @@
 const business = require('./monolithic_members.js');
 
 // Server클래스 참조
-class members extends require('../base/server.js') {
+class members extends require('./server.js') {
     constructor() {
         super("members"                                                     // 부모 클래스 생성자 호출
             , process.argv[2] ? Number(process.argv[2]) : 9020
