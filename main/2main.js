@@ -1,16 +1,29 @@
 var express = require('express');
-var app = express();
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 var helmet = require('helmet')
 const session = require("express-session")
 let RedisStore = require("connect-redis")(session)
+const redis = require("redis")
 const { createClient } = require("redis")
-let redisClient = createClient({ legacyMode: true })
-redisClient.connect().catch(console.error)
-app.use(helmet());
 
+
+// let redisClient = createClient({ 
+//   legacyMode: true,
+//   host: `${process.env.REDIS_HOST}`,
+//   port: `${process.env.REDIS_PORT}`
+// })
+
+let redisClient = createClient({ 
+  legacyMode: true,
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT
+ })
+redisClient.connect().catch(console.error)
+
+var app = express();
+app.use(helmet());
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -19,8 +32,11 @@ app.use(session({
     secret: 'awkefjl#!@$!fkawegwef',
     resave: false,
     saveUninitialized: true,
-    store: new RedisStore({ client: redisClient })
-}))
+    store: new RedisStore({client: redisClient}),
+    cookie: {
+      maxAge: 1000 * 60
+    }
+}));
   
 app.get('*', function(request, response, next){
   fs.readdir('./data', function(error, filelist){

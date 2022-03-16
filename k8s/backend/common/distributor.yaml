@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: distributor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+        app: distributor
+        tire: backend
+  template:
+    metadata:
+      labels:
+        app: distributor
+        tire: backend
+    spec:
+      containers:
+      - name: distributor
+        image: hw038/back-dist
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 9000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: distributor
+  labels:
+    app: distributor
+    tire: backend
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 9000
+    targetPort: 9000
+  selector:
+    app: distributor
+    tire: backend

@@ -13,6 +13,6 @@ RUN npm install --silent
 # copy source
 COPY . .
 
-EXPOSE 9010
+EXPOSE 9000
 
-CMD ["npm", "run", "start"]
+CMD ["node", "distributor.js"]

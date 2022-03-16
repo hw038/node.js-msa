@@ -4,7 +4,7 @@ const conn = {
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
-    port: 3306,
+    port: process.env.DATABASE_PORT,
     database: process.env.DATABASE_NAME
 };
 /*

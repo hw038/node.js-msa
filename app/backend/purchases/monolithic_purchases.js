@@ -1,11 +1,11 @@
 
 const mysql = require('mysql');
 const conn = {
-    host: 'localhost',
-    user: 'micro',
-    password: 'service',
-    port: 3306,
-    database: 'monolithic'
+    host: process.env.DATABASE_HOST,
+    user: process.env.DATABASE_USERNAME,
+    password: process.env.DATABASE_PASSWORD,
+    port: process.env.DATABASE_PORT,
+    database: process.env.DATABASE_NAME
 };
 /*
         - name: DATABASE_HOST

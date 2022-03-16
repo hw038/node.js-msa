@@ -5,6 +5,10 @@ const url = require('url');
 const querystring = require('querystring');
 const tcpClient = require('./client');
 
+var DIST_HOST = process.env.DISTRIBUTOR_HOST || 'localhost'
+var DIST_PORT= process.env.DISTRIBUTOR_PORT || 9000
+var GATE_PORT = process.env.GATE_PORT || 8000
+
 var mapClients = {};
 var mapUrls = {};
 var mapResponse = {};
@@ -36,7 +40,7 @@ var server = http.createServer((req, res) => {
     } else {
         onRequest(res, method, pathname, uri.query);
     }
-}).listen(8000, () => {
+}).listen(GATE_PORT, '0.0.0.0', () => {
     console.log('listen', server.address());
 
 // Distributor와 의 통신 처리
@@ -45,7 +49,7 @@ var packet = {
         method: "POST",
         key: 0,
         params: {
-            port: 8000,
+            port: GATE_PORT,
             name: "gate",
             urls: []
         }
@@ -53,8 +57,8 @@ var packet = {
     var isConnectedDistributor = false;
 
     this.clientDistributor = new tcpClient(
-        "localhost"
-        , 9000
+        DIST_HOST
+        , DIST_PORT
         , (options) => {                                    // 접속 이벤트
             isConnectedDistributor = true;
             this.clientDistributor.write(packet);

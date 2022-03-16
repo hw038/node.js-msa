@@ -12,7 +12,7 @@ class members extends require('./server.js') {
             , ["POST/members", "GET/members", "DELETE/members"]
         );
 
-        this.connectToDistributor("127.0.0.1", 9000, (data) => {            // Distributor 연결
+        this.connectToDistributor(process.env.DISTRIBUTOR_HOST, 9000, (data) => {            // Distributor 연결
             console.log("Distributor Notification", data);
         });
     }

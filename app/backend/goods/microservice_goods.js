@@ -12,7 +12,7 @@ class goods extends require('./server.js') {
             , ["POST/goods", "GET/goods", "DELETE/goods"]
         );
 
-        this.connectToDistributor("172.30.1.16", 9000, (data) => {        // Distributor 연결
+        this.connectToDistributor(process.env.DISTRIBUTOR_HOST, 9000, (data) => {        // Distributor 연결
             console.log("Distributor Notification", data);
         });
     }

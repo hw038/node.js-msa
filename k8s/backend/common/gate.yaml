@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+        app: gate
+        tire: backend
+  template:
+    metadata:
+      labels:
+        app: gate
+        tire: backend
+    spec:
+      containers:
+      - name: gate
+        image: hw038/back-gate
+        env:
+        - name: DISTRIBUTOR_HOST
+          value: "distributor.default.svc.cluster.local"
+        - name: DISTRIBUTOR_PORT
+          value: "9000"
+        - name: GATE_PORT
+          value: "8000"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gate
+  labels:
+    app: gate
+    tire: backend
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8000
+    targetPort: 8000
+  selector:
+    app: gate
+    tire: backend

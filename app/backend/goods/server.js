@@ -70,7 +70,6 @@ class tcpServer{
  
     // Distributor 접속 함수
     connectToDistributor(host, port, onNoti) {       
-       
         // Distributor 전달 패킷
         var packet = {
             uri: "/distributes",
