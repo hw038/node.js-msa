@@ -34,18 +34,3 @@ spec:
             memory: 100Mi
         ports:
         - containerPort: 9010
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: goods
-  labels:
-    app: goods
-    tire: backend
-spec:
-  ports:
-  - port: 9010
-    targetPort: 9010
-  selector:
-    app: goods
-    tire: backend

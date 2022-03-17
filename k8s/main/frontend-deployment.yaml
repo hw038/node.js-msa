@@ -1,0 +1,42 @@
+# SOURCE: https://cloud.google.com/kubernetes-engine/docs/tutorials/nodejs
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+        app: nodejs
+        tier: frontend
+  template:
+    metadata:
+      labels:
+        app: nodejs
+        tier: frontend
+    spec:
+      containers:
+      - name: nodejs
+        image: hw038/node-js-front-app
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    app: nodejs
+    tier: frontend
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 3000
+  selector:
+    app: nodejs
+    tier: frontend

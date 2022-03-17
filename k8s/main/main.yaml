@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+        app: nodejs
+        tier: frontend
+  template:
+    metadata:
+      labels:
+        app: nodejs
+        tier: frontend
+    spec:
+      containers:
+      - name: nodejs
+        image: hw038/node-js-front-app
+        env:
+        - name: REDIS_HOST
+          value: "my-redis.default.svc.cluster.local"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: GET_HOSTS_FROM
+          value: dns
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-frontend
+  labels:
+    app: nodejs
+    tier: frontend
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  # type: LoadBalancer
+  type: LoadBalancer
+  ports:
+    # the port that this service should serve on
+  - port: 80
+    targetPort: 3000
+  selector:
+    app: nodejs
+    tier: frontend

@@ -12,4 +12,5 @@
 - Backend
 - API Gateway
 - DB (Paas DB)
-- Session (Redis Pod)
+- Session (Redis Pod) - 보류
+

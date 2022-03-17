@@ -2,7 +2,7 @@
 const http = require('http');
 
 var options = {
-    host: "20.200.254.37",
+    host: "20.200.233.229",
     port: 8000,
     headers: {
         'Content-Type': 'application/json'

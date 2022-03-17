@@ -40,7 +40,7 @@ var server = http.createServer((req, res) => {
     } else {
         onRequest(res, method, pathname, uri.query);
     }
-}).listen(GATE_PORT, '0.0.0.0', () => {
+}).listen(GATE_PORT, () => {
     console.log('listen', server.address());
 
 // Distributor와 의 통신 처리
